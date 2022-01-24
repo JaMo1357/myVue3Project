@@ -3,7 +3,10 @@
     <div class="movies-content__header">
       <h1>{{ msg }}</h1>
       <hr>
-      <button @click="sortMovies('A-Z')">Sort movies!</button>
+      <button @click="sortMovies('byName')">Sort movies!</button>
+      <input type="text" placeholder="...name">
+      <input type="text" placeholder="...actors name">
+      <input type="text" placeholder="...category">
     </div>
     <div class="movies-content__body">
       <MovieTile v-for="movie in allMovies"
@@ -19,9 +22,9 @@
 <script lang="ts">
 import { useStore } from 'vuex'
 import { key } from './../store'
-import { GetterTypes } from './../store/constants'
+import { GetterTypes, MutationTypes } from './../store/constants'
 import MovieTile from '../components/MovieTile.vue'
-import { defineComponent, computed } from 'vue'
+import {defineComponent, computed, ref, watch} from 'vue'
 
 
 export default defineComponent({
@@ -31,23 +34,21 @@ export default defineComponent({
   },
   components: { MovieTile },
   setup({ msg }) {
-    const store = useStore(key);
+    const store = useStore(key)
+    const allMovies = ref(computed(() => store.getters[GetterTypes.GET_ALL_MOVIES]));
 
-    const getMovies = GetterTypes.GET_ALL_MOVIES;
-    const isLoading = GetterTypes.GET_IS_LOADING;
-
-    function sortMovies(sortType) {
-      console.log(sortType);
+    function sortMovies(param) {
+      store.commit(MutationTypes.SORT_MOVIES, param)
     }
 
     return {
       message: msg,
       sortMovies,
-      allMovies: computed(() => store.getters[getMovies]),
-      isLoading: computed(() => store.getters[isLoading]),
-    };
+      allMovies,
+      isLoading: computed(() => store.getters[GetterTypes.GET_IS_LOADING]),
+    }
   }
-});
+})
 </script>
 <style lang="scss">
 $baseClass: '.movies-content';

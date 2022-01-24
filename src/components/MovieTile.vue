@@ -5,22 +5,21 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent } from 'vue'
 
 export default defineComponent({
   props: {
     singleMovieData: Object,
   },
   setup({ singleMovieData }) {
-    console.log(singleMovieData);
-    const { name } = singleMovieData;
+    const { name } = singleMovieData
     //const store = useStore();
 
     return {
       movieName: name,
-    };
+    }
   }
-});
+})
 </script>
 <style lang="scss">
 $baseClass: '.movie-tile';

@@ -3,14 +3,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { mapMutations } from 'vuex';
+import { defineComponent } from 'vue'
+import { mapMutations } from 'vuex'
 
 import Movies from './components/Movies.vue'
 import {
   ActionTypes,
   MutationTypes,
-} from './store/constants';
+} from './store/constants'
 
 
 export default defineComponent({
@@ -21,15 +21,15 @@ export default defineComponent({
       setLoadingState: MutationTypes.SET_LOADING_STATE,
     }),
     laodMoviesToStore() {
-      this.$store.dispatch(ActionTypes.LOAD_MOVIES);
+      this.$store.dispatch(ActionTypes.LOAD_MOVIES)
     },
   },
   created() {
-    this.setLoadingState(true);
-    this.laodMoviesToStore();
-    this.setLoadingState(false);
+    this.setLoadingState(true)
+    this.laodMoviesToStore()
+    this.setLoadingState(false)
   },
-});
+})
 </script>
 
 <style>

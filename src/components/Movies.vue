@@ -36,11 +36,10 @@ export default defineComponent({
   components: { MovieTile },
   setup({ msg }) {
     const store = useStore(key)
-    var allMovies = computed(() => store.getters[GetterTypes.GET_ALL_MOVIES])
+    const allMovies = computed(() => store.getters[GetterTypes.GET_ALL_MOVIES])
 
-    function sortMovies(param) {
-      store.commit(MutationTypes.SORT_MOVIES, param)
-      allMovies = computed(() => store.getters[GetterTypes.GET_ALL_MOVIES])
+    function sortMovies(sortType: string) {
+      store.commit(MutationTypes.SORT_MOVIES, sortType)
     }
 
     return {

@@ -19,6 +19,8 @@ export const mutations: MutationTree<State> & Mutations = {
         const stringified = JSON.stringify(state.movies)
         const parsed = JSON.parse(stringified);
 
-        state.movies = parsed.sort((a: object, b: object) => (a.name > b.name) ? 1 : -1)
+        if (sortType === 'byName') {
+            state.movies = parsed.sort((a: any, b: any) => (a.name > b.name) ? 1 : -1)
+        }
     },
 }

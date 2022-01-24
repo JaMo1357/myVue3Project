@@ -9,7 +9,8 @@
       <input type="text" placeholder="...category">
     </div>
     <div class="movies-content__body">
-      <MovieTile v-for="movie in allMovies"
+      <MovieTile v-for="(movie, i) in allMovies"
+           :key="`${movie.name}_${i}`"
            :singleMovieData="movie"
       />
     </div>
@@ -35,10 +36,11 @@ export default defineComponent({
   components: { MovieTile },
   setup({ msg }) {
     const store = useStore(key)
-    const allMovies = ref(computed(() => store.getters[GetterTypes.GET_ALL_MOVIES]));
+    var allMovies = computed(() => store.getters[GetterTypes.GET_ALL_MOVIES])
 
     function sortMovies(param) {
       store.commit(MutationTypes.SORT_MOVIES, param)
+      allMovies = computed(() => store.getters[GetterTypes.GET_ALL_MOVIES])
     }
 
     return {

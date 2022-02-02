@@ -1,21 +1,22 @@
 <template>
-  <Movies msg="I am movie application :)" />
+  <Filter />
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { mapMutations } from 'vuex'
 
-import Movies from './components/Movies.vue'
+import Filter from './components/Filter.vue';
 import {
   ActionTypes,
   MutationTypes,
 } from './store/constants'
 
 
+
 export default defineComponent({
   name: 'App',
-  components: { Movies },
+  components: { Filter },
   methods: {
     ...mapMutations({
       setLoadingState: MutationTypes.SET_LOADING_STATE,
@@ -24,7 +25,8 @@ export default defineComponent({
       this.$store.dispatch(ActionTypes.LOAD_MOVIES)
     },
   },
-  created() {
+  mounted() {
+    console.log('App.vue mounted')
     this.setLoadingState(true)
     this.laodMoviesToStore()
     this.setLoadingState(false)
@@ -34,6 +36,7 @@ export default defineComponent({
 
 <style>
 #app {
+  font-size: 15px;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

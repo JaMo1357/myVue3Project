@@ -1,6 +1,14 @@
 <template>
   <div class="movie-tile">
     <span>{{ movieName }}</span>
+    <ul>
+      <li>Actors:</li>
+      <li v-for="(actorsName, i) in actors"
+        :key="i"
+      >
+        {{ actorsName }}
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -12,11 +20,11 @@ export default defineComponent({
     singleMovieData: Object,
   },
   setup({ singleMovieData }) {
-    const { name } = singleMovieData
-    //const store = useStore();
+    const { name, actors } = singleMovieData;
 
     return {
       movieName: name,
+      actors,
     }
   }
 })
@@ -29,7 +37,24 @@ $baseClass: '.movie-tile';
   width: auto;
   height: 150px;
   display: flex;
+  flex-direction: column;
   margin: 10px;
   padding: 10px;
+  border-radius: 6px;
+
+  span {
+    font-size: 19px;
+    text-decoration: underline;
+  }
+
+  ul {
+    width: auto;
+    overflow-y: scroll;
+    list-style-type: none;
+
+    li:nth-child(1) {
+      font-weight: bold;
+    }
+  }
 }
 </style>

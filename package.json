@@ -1,6 +1,6 @@
 {
   "name": "myvue3project",
-  "version": "0.0.0",
+  "version": "1.0.1",
   "scripts": {
     "serve": "json-server --watch movies.json --port=3001",
     "build": "vite build",
@@ -9,10 +9,12 @@
   },
   "dependencies": {
     "@vue/cli-service": "^4.5.15",
+    "throttle-debounce": "^3.0.1",
     "vue": "^3.2.25",
     "vuex": "^4.0.2"
   },
   "devDependencies": {
+    "@types/throttle-debounce": "^2.1.0",
     "@vitejs/plugin-vue": "^2.0.0",
     "@vue/cli": "^4.5.15",
     "@vue/cli-plugin-typescript": "^4.5.15",

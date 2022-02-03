@@ -3,35 +3,35 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { mapMutations } from 'vuex'
+import { defineComponent } from 'vue';
+import { mapMutations } from 'vuex';
 
 import MoviesFilter from '@/components/MoviesFilter.vue';
 import {
-  ActionTypes,
-  MutationTypes,
-} from '@/store/constants'
+	ActionTypes,
+	MutationTypes,
+} from '@/store/constants';
 
 
 
 export default defineComponent({
-  name: 'App',
-  components: {MoviesFilter },
-  mounted() {
-    console.log('App.vue mounted')
-    this.setLoadingState(true)
-    this.laodMoviesToStore()
-    this.setLoadingState(false)
-  },
-  methods: {
-    ...mapMutations({
-      setLoadingState: MutationTypes.SET_LOADING_STATE,
-    }),
-    laodMoviesToStore() {
-      this.$store.dispatch(ActionTypes.LOAD_MOVIES)
-    },
-  },
-})
+	name: 'App',
+	components: {MoviesFilter },
+	mounted() {
+		console.log('App.vue mounted');
+		this.setLoadingState(true);
+		this.laodMoviesToStore();
+		this.setLoadingState(false);
+	},
+	methods: {
+		...mapMutations({
+			setLoadingState: MutationTypes.SET_LOADING_STATE,
+		}),
+		laodMoviesToStore() {
+			this.$store.dispatch(ActionTypes.LOAD_MOVIES);
+		},
+	},
+});
 </script>
 
 <style>

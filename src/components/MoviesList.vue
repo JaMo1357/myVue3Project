@@ -16,23 +16,23 @@
 </template>
 
 <script lang="ts">
-import MovieTile from '@/components/MovieTile.vue'
+import MovieTile from '@/components/MovieTile.vue';
 
 export default {
-  name: 'MoviesList',
-  components: { MovieTile },
-  props: {
-    moviesData: {
-      type: Array,
-      required: false,
-      default: () => [],
-    },
-    isLoading: {
-      type: Boolean,
-      required: true,
-    },
-  },
-}
+	name: 'MoviesList',
+	components: { MovieTile },
+	props: {
+		moviesData: {
+			type: Array,
+			required: false,
+			default: () => [],
+		},
+		isLoading: {
+			type: Boolean,
+			required: true,
+		},
+	},
+};
 </script>
 <style lang="scss">
 $baseClass: '.movies-content';

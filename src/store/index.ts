@@ -2,8 +2,8 @@ import { actions } from '@/store/actions';
 import { mutations } from '@/store/mutations';
 import { getters } from '@/store/getters';
 
-import { InjectionKey } from 'vue'
-import { createStore, Store } from 'vuex'
+import { InjectionKey } from 'vue';
+import { createStore, Store } from 'vuex';
 
 // define your typings for the store state
 export interface Movie {
@@ -29,13 +29,13 @@ export interface State {
 export const key: InjectionKey<Store<State>> = Symbol();
 
 export const store = createStore<State>({
-    state: {
+	state: {
         movies: [],
         isLoading: false,
         isSorted: false,
         isFiltered: false,
-    },
-    actions,
-    mutations,
-    getters,
-})
+	},
+	actions,
+	mutations,
+	getters,
+});

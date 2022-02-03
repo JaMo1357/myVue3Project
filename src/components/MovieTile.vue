@@ -14,23 +14,22 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
 
 export default defineComponent({
-  props: {
-    singleMovieData: {
-      type: Object,
-      default: () => ({}),
-    },
-  },
-  setup(props) {
-
-    return {
-      movieName: props.singleMovieData.name,
-      actors: props.singleMovieData.actors,
-    }
-  }
-})
+	props: {
+		singleMovieData: {
+			type: Object,
+			default: () => ({}),
+		},
+	},
+	setup(props) {
+		return {
+			movieName: props.singleMovieData.name,
+			actors: props.singleMovieData.actors,
+		};
+	}
+});
 </script>
 <style lang="scss">
 $baseClass: '.movie-tile';

@@ -4,10 +4,10 @@
   "scripts": {
     "serve": "json-server --watch movies.json --port=3001",
     "build": "vite build",
+    "lint": "vue-cli-service lint",
     "dev": "vite",
-    "preview": "vite preview",
-    "lint": "eslint",
-    "lint-fix": "eslint --fix --ext .js,.ts,.vue ./src"
+    "lint-fix": "eslint --fix --ext .js,.ts,.vue ./src",
+    "preview": "vite preview"
   },
   "dependencies": {
     "@headlessui/vue": "^1.4.3",
@@ -23,6 +23,7 @@
     "@typescript-eslint/parser": "^5.10.2",
     "@vitejs/plugin-vue": "^2.0.0",
     "@vue/cli": "^4.5.15",
+    "@vue/cli-plugin-eslint": "^4.5.15",
     "@vue/cli-plugin-typescript": "^4.5.15",
     "@vue/eslint-config-typescript": "^10.0.0",
     "autoprefixer": "^10.4.2",

@@ -1,0 +1,11 @@
+.movies-content {
+  @apply h-full w-full flex flex-col justify-self-center self-center;
+
+  &__body {
+    @apply grid grid-cols-3 gap-3;
+  }
+
+  &__loader {
+    @apply flex absolute justify-self-center self-center;
+  }
+}

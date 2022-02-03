@@ -1,6 +1,6 @@
 import { GetterTree } from 'vuex'
-import { State } from './'
-import { GetterTypes } from './constants'
+import { State } from '@/store'
+import { GetterTypes } from '@/store/constants'
 
 export type Getters<S = State> = {
     [GetterTypes.GET_ALL_MOVIES](state: S, movies: Array<object>): void,

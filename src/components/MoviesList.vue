@@ -1,24 +1,26 @@
 <template>
   <div class="movies-content">
-    <div class="movies-content__header">
-    </div>
+    <div class="movies-content__header" />
     <div class="movies-content__body">
-      <MovieTile v-for="(movie, i) in moviesData"
+      <MovieTile
+        v-for="(movie, i) in moviesData"
         :key="`${movie.name}_${i}`"
-        :singleMovieData="movie"
+        :single-movie-data="movie"
       />
     </div>
-    <div class="movies-content__loader"
+    <div
       v-if="isLoading"
+      class="movies-content__loader"
     />
   </div>
 </template>
 
 <script lang="ts">
-import MovieTile from '../components/MovieTile.vue'
+import MovieTile from '@/components/MovieTile.vue'
 
 export default {
-  name: 'Movies',
+  name: 'MoviesList',
+  components: { MovieTile },
   props: {
     moviesData: {
       type: Array,
@@ -30,31 +32,18 @@ export default {
       required: true,
     },
   },
-  components: { MovieTile },
 }
 </script>
 <style lang="scss">
 $baseClass: '.movies-content';
 
 #{$baseClass} {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-self: center;
-  align-self: center;
-  flex-direction: column;
-
-  &__body {
-    display: grid;
-    grid-template-areas: ". . .";
-  }
-
   &__loader {
     height: 43px;
     width: 63px;
-    display: flex;
-    justify-self: center;
-    align-self: center;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
     background: url('./src/assets/loader.gif');
   }
 }

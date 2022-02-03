@@ -1,0 +1,15 @@
+.movie-tile {
+  @apply gap-1 flex flex-col p-4 bg-white shadow rounded;
+
+  &__name {
+    @apply font-bold underline px-4 py-2 rounded bg-gray-200 text-black;
+  }
+
+  &__actors {
+    @apply font-bold text-black;
+  }
+
+  ul {
+    @apply w-auto overflow-y-scroll list-none;
+  }
+}

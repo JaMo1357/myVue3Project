@@ -1,7 +1,7 @@
 import { MutationTree } from "vuex"
-import { MutationTypes } from './constants'
-import { State } from './'
-import { Movie } from './index'
+import { MutationTypes } from '@/store/constants'
+import { State } from '@/store'
+import { Movie } from '@/store/index'
 
 export type Mutations<S = State> = {
     [MutationTypes.ADD_MOVIES](state: S, moviesData: Array<object>): void,

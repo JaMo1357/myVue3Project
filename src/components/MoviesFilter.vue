@@ -1,29 +1,48 @@
 <template>
-  <div class="movies-filter">
-    <button @click="sortOrReset()">{{
-        isSorted || isFiltered ? 'Reset Filter' : 'Sort movies A-Z'
-      }}</button>
-    <input type="text" placeholder="...name" @keyup="filterMovies($event, 'byName')">
-    <input type="text" placeholder="...actors name" @keyup="filterMovies($event, 'byActor')">
-    <input type="text" placeholder="...category" @keyup="filterMovies($event, 'byCategory')">
+  <div>
+    <div class="movies-filter flex-initial">
+      <button
+        class="border"
+        @click="sortOrReset()"
+      >
+        {{
+          isSorted || isFiltered ? 'Reset Filter' : 'Sort movies A-Z'
+        }}
+      </button>
+      <input
+        type="text"
+        placeholder="...name"
+        @keyup="filterMovies($event, 'byName')"
+      >
+      <input
+        type="text"
+        placeholder="...actors name"
+        @keyup="filterMovies($event, 'byActor')"
+      >
+      <input
+        type="text"
+        placeholder="...category"
+        @keyup="filterMovies($event, 'byCategory')"
+      >
+    </div>
+    <MoviesList
+      :movies-data="movies"
+      :is-loading="isLoading"
+    />
   </div>
-  <Movies
-    :moviesData="movies"
-    :isLoading="isLoading"
-  />
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from "vue";
-import { useStore } from "vuex";
-import { key } from "./../store";
-import { GetterTypes } from "./../store/constants";
-import { throttle } from "throttle-debounce";
-import Movies from './Movies.vue';
+import {computed, defineComponent, ref} from 'vue';
+import {useStore} from 'vuex';
+import {key} from '@/store';
+import {filtersMap, GetterTypes} from '@/store/constants';
+import {throttle} from 'throttle-debounce';
+import MoviesList from '@/components/MoviesList.vue';
 
 export default defineComponent({
-  name: "Filter",
-  components: { Movies },
+  name: "MoviesFilter",
+  components: {MoviesList},
   setup() {
     const store = useStore(key);
     let movies = ref([]);
@@ -34,7 +53,7 @@ export default defineComponent({
       if (isSorted) {
         movies.value = moviesFromStore();
       } else {
-        movies.value = sortMovies('byName');
+        movies.value = sortMovies();
       }
     }
 
@@ -50,19 +69,18 @@ export default defineComponent({
       return store.getters[GetterTypes.GET_SORTED_MOVIES];
     }
 
-    const filterMovies = throttle(500, (e: object, filterType: string) => {
-      console.log(e, filterType);
-      const filterSubString = e.target.value;
+    const filterMovies = throttle(500, (e: Event, filterType: string) => {
+      const filterSubString = (e.target as HTMLInputElement).value;
 
       if (filterSubString) {
         switch (filterType) {
-          case 'byName':
+          case filtersMap.BY_NAME:
             movies.value = store.getters[GetterTypes.GET_FILTERED_MOVIES_BY_NAME](filterSubString);
             break;
-          case 'byActor':
+          case filtersMap.BY_ACTOR:
             movies.value = store.getters[GetterTypes.GET_FILTERED_MOVIES_BY_ACTOR](filterSubString);
             break;
-          case 'byCategory':
+          case filtersMap.BY_CATEGORY:
             movies.value = store.getters[GetterTypes.GET_FILTERED_MOVIES_BY_CATEGORY](filterSubString);
             break;
         }

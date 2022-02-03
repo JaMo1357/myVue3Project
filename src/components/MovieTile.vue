@@ -1,9 +1,10 @@
 <template>
   <div class="movie-tile">
-    <span>{{ movieName }}</span>
+    <span class="movie-tile__name">{{ movieName }}</span>
+    <span class="movie-tile__actors">Actors:</span>
     <ul>
-      <li>Actors:</li>
-      <li v-for="(actorsName, i) in actors"
+      <li
+        v-for="(actorsName, i) in actors"
         :key="i"
       >
         {{ actorsName }}
@@ -17,14 +18,16 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
   props: {
-    singleMovieData: Object,
+    singleMovieData: {
+      type: Object,
+      default: () => ({}),
+    },
   },
-  setup({ singleMovieData }) {
-    const { name, actors } = singleMovieData;
+  setup(props) {
 
     return {
-      movieName: name,
-      actors,
+      movieName: props.singleMovieData.name,
+      actors: props.singleMovieData.actors,
     }
   }
 })
@@ -33,28 +36,6 @@ export default defineComponent({
 $baseClass: '.movie-tile';
 
 #{$baseClass} {
-  border: 1px solid grey;
-  width: auto;
-  height: 150px;
-  display: flex;
-  flex-direction: column;
-  margin: 10px;
-  padding: 10px;
-  border-radius: 6px;
-
-  span {
-    font-size: 19px;
-    text-decoration: underline;
-  }
-
-  ul {
-    width: auto;
-    overflow-y: scroll;
-    list-style-type: none;
-
-    li:nth-child(1) {
-      font-weight: bold;
-    }
-  }
+  height: 200px;
 }
 </style>

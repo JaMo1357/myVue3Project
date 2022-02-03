@@ -1,13 +1,17 @@
 {
   "name": "myvue3project",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "scripts": {
     "serve": "json-server --watch movies.json --port=3001",
     "build": "vite build",
     "dev": "vite",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint",
+    "lint-fix": "eslint --fix --ext .js,.ts,.vue ./src"
   },
   "dependencies": {
+    "@headlessui/vue": "^1.4.3",
+    "@heroicons/vue": "^1.0.5",
     "@vue/cli-service": "^4.5.15",
     "throttle-debounce": "^3.0.1",
     "vue": "^3.2.25",
@@ -15,11 +19,21 @@
   },
   "devDependencies": {
     "@types/throttle-debounce": "^2.1.0",
+    "@typescript-eslint/eslint-plugin": "^5.10.2",
+    "@typescript-eslint/parser": "^5.10.2",
     "@vitejs/plugin-vue": "^2.0.0",
     "@vue/cli": "^4.5.15",
     "@vue/cli-plugin-typescript": "^4.5.15",
+    "@vue/eslint-config-typescript": "^10.0.0",
+    "autoprefixer": "^10.4.2",
+    "eslint": "^8.8.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-vue": "^8.4.0",
     "json-server": "^0.17.0",
+    "postcss": "^8.4.6",
     "sass": "^1.49.0",
+    "tailwindcss": "^3.0.18",
     "typescript": "~4.1.5",
     "vite": "^2.7.2"
   }

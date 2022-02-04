@@ -1,6 +1,6 @@
 {
   "name": "myvue3project",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "scripts": {
     "serve": "json-server --watch movies.json --port=3001",
     "build": "vite build",

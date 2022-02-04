@@ -2,7 +2,7 @@ import { createApp } from 'vue';
 import App from './App.vue';
 import { store, key } from '@/store/index';
 
-import '@/assets/index.scss';
+import '@/assets/css/index.scss';
 
 const app = createApp(App);
 

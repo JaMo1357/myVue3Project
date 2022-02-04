@@ -1,0 +1,7 @@
+html, body {
+  @apply h-full w-full;
+
+  #app {
+    @apply flex flex-row justify-self-center self-center text-sm font-sans antialiased p-60 w-auto min-w-1000 h-full;
+  }
+}

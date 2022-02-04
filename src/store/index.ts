@@ -30,10 +30,10 @@ export const key: InjectionKey<Store<State>> = Symbol();
 
 export const store = createStore<State>({
 	state: {
-        movies: [],
-        isLoading: false,
-        isSorted: false,
-        isFiltered: false,
+		movies: [],
+		isLoading: false,
+		isSorted: false,
+		isFiltered: false,
 	},
 	actions,
 	mutations,

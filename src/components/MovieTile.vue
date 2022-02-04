@@ -31,10 +31,3 @@ export default defineComponent({
 	}
 });
 </script>
-<style lang="scss">
-$baseClass: '.movie-tile';
-
-#{$baseClass} {
-  height: 200px;
-}
-</style>

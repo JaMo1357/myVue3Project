@@ -34,17 +34,3 @@ export default {
 	},
 };
 </script>
-<style lang="scss">
-$baseClass: '.movies-content';
-
-#{$baseClass} {
-  &__loader {
-    height: 43px;
-    width: 63px;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
-    background: url('./src/assets/loader.gif');
-  }
-}
-</style>

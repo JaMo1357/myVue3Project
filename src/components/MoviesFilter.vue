@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="movies-filter flex-initial">
+  <div class="movies-filter">
+    <div class="movies-filter__wrapper">
       <button
         class="border"
         @click="sortOrReset()"
@@ -33,11 +33,11 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, ref} from 'vue';
-import {useStore} from 'vuex';
-import {key} from '@/store';
-import {filtersMap, GetterTypes} from '@/store/constants';
-import {throttle} from 'throttle-debounce';
+import { computed, defineComponent, ref } from 'vue';
+import { useStore } from 'vuex';
+import { key } from '@/store';
+import { filtersMap, GetterTypes } from '@/store/constants';
+import { throttle } from 'throttle-debounce';
 import MoviesList from '@/components/MoviesList.vue';
 
 export default defineComponent({
@@ -107,15 +107,3 @@ export default defineComponent({
 	},
 });
 </script>
-
-<style lang="scss">
-html, body {
-  height: 100%;
-  width: 100%;
-
-  #app {
-    display: flex;
-    flex-direction: column;
-  }
-}
-</style>

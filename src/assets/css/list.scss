@@ -6,6 +6,6 @@
   }
 
   &__loader {
-    @apply flex absolute justify-self-center self-center;
+    @apply h-43 w-63 flex absolute top-2/4 left-2/4 bg-loader;
   }
 }

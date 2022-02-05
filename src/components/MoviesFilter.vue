@@ -26,6 +26,12 @@
       >
     </div>
     <MoviesList
+      v-if="isSorted || isFiltered"
+      :movies-data="final"
+      :is-loading="isLoading"
+    />
+    <MoviesList
+      v-else
       :movies-data="movies"
       :is-loading="isLoading"
     />
@@ -41,63 +47,50 @@ import { throttle } from 'throttle-debounce';
 import MoviesList from '@/components/MoviesList.vue';
 
 export default defineComponent({
-	name: "MoviesFilter",
-	components: {MoviesList},
+	name: 'MoviesFilter',
+	components: { MoviesList },
 	setup() {
 		const store = useStore(key);
-		let movies = ref([]);
+		let movies = ref(computed(() => store.getters[GetterTypes.GET_ALL_MOVIES]));
+		let sortedMovies = ref(computed(() => store.getters[GetterTypes.GET_SORTED_MOVIES]));
+		let final = ref(movies.value);
 
 		function sortOrReset() {
-			let isSorted = store.state.isSorted;
-
-			if (isSorted) {
-				movies.value = moviesFromStore();
+			if (store.state.isSorted){
+				store.state.isSorted = false;
+				store.state.isFiltered = false;
+				final.value = movies.value;
 			} else {
-				movies.value = sortMovies();
+				store.state.isSorted = true;
+				final.value = sortedMovies.value;
 			}
-		}
-
-		function moviesFromStore() {
-			store.state.isSorted = false;
-			store.state.isFiltered = false;
-
-			return store.getters[GetterTypes.GET_ALL_MOVIES];
-		}
-
-		function sortMovies() {
-			store.state.isSorted = true;
-      
-			return store.getters[GetterTypes.GET_SORTED_MOVIES];
 		}
 
 		const filterMovies = throttle(500, (e: Event, filterType: string) => {
 			const filterSubString = (e.target as HTMLInputElement).value;
 
-			if (filterSubString) {
-				switch (filterType) {
+			if (filterSubString){
+				switch (filterType){
 				case filtersMap.BY_NAME:
-					movies.value = store.getters[GetterTypes.GET_FILTERED_MOVIES_BY_NAME](filterSubString);
+					final.value = store.getters[GetterTypes.GET_FILTERED_MOVIES_BY_NAME](filterSubString);
 					break;
 				case filtersMap.BY_ACTOR:
-					movies.value = store.getters[GetterTypes.GET_FILTERED_MOVIES_BY_ACTOR](filterSubString);
+					final.value = store.getters[GetterTypes.GET_FILTERED_MOVIES_BY_ACTOR](filterSubString);
 					break;
 				case filtersMap.BY_CATEGORY:
-					movies.value = store.getters[GetterTypes.GET_FILTERED_MOVIES_BY_CATEGORY](filterSubString);
+					final.value = store.getters[GetterTypes.GET_FILTERED_MOVIES_BY_CATEGORY](filterSubString);
 					break;
 				}
 
 				store.state.isFiltered = true;
 			} else {
-				movies.value = moviesFromStore();
+				final.value = movies.value;
 			}
 		});
 
-		setTimeout(() => {
-			movies.value = store.getters[GetterTypes.GET_ALL_MOVIES];
-		}, 500);
-
 		return {
 			movies,
+			final,
 			sortOrReset,
 			filterMovies,
 			isLoading: computed(() => store.state.isLoading),

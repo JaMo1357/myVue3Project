@@ -1,4 +1,4 @@
-import { MutationTree } from "vuex";
+import { MutationTree } from 'vuex';
 import { MutationTypes } from '@/store/constants';
 import { State } from '@/store';
 import { Movie } from '@/store/index';

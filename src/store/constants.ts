@@ -1,9 +1,4 @@
 //actions:
-export enum prdel {
-    LOAD_MOVIES = 'LOAD_MOVIES',
-}
-
-//actions:
 export enum ActionTypes {
     LOAD_MOVIES = 'LOAD_MOVIES',
 }

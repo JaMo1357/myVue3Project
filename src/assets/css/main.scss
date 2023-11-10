@@ -3,5 +3,10 @@ html, body {
 
   #app {
     @apply flex flex-row justify-self-center self-center text-sm font-sans antialiased p-60 w-auto min-w-1000 h-full;
+
+    h1 {
+      font-size: 26px;
+      padding-bottom: 20px;
+    }
   }
 }

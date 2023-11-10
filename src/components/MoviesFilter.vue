@@ -1,5 +1,6 @@
 <template>
   <div class="movies-filter">
+    <h1>Find your movie</h1>
     <div class="movies-filter__wrapper">
       <button
         class="border"
